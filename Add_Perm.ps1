@@ -2,13 +2,32 @@
 ## マイドキュメント →2003
 ## MyDocuments      →2016
 
+
+## 変数
+################################################################
+
+## 旧2003 Serverのパス
 $KATAKANA1 = 'C:\ic-share\Administrator/ドキュメント'
+
+## 新2016 Serverのパス
 $EIGO1 = 'C:\ic-share\Administrator/MyDocuments'
+
+## 各ユーザ名
 $user = 'administrator'
+
+## 所有者のパス（ドメイン＋ファイルサーバのローカルアドミン）
+$owner = 'FILESERVER\Administrator' 
+
+## 新2016 Serverのドメイン名
+$domain = 'FILESERVER'
+
+################################################################
+
+
 
 
 ## 1.マイドキュメントの所有者をファイルサーバのローカルアドミンに変更
-icacls $KATAKANA1 /setowner FILESERVER\Administrator /T
+icacls $KATAKANA1 /setowner $owner /T
 
 ##所有者確認コマンド
 takeown /F $KATAKANA1 /R
@@ -38,7 +57,7 @@ New-Item $KATAKANA1 -Type directory
     
     Move-Item $Shortcut $TargetPath
 
-## 6.新ドメインの権限をフォルダ内の全ファイルにつける
+## 6.新ドメイン各ユーザの権限をフォルダ内の全ファイルにつける
 
-cmd /C "icacls $EIGO1\* /grant FILESERVER\Administrator`:F /T"
+cmd /C "icacls $EIGO1\* /grant $domain\$user`:F /T"
 
