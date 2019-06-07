@@ -1,0 +1,1 @@
+"# ic-share"  initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/yusaic/ic-share.gitgit push -u origin master
