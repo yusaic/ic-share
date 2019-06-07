@@ -2,33 +2,43 @@
 ## マイドキュメント →2003
 ## MyDocuments      →2016
 
+$KATAKANA1 = 'C:\ic-share\Administrator/ドキュメント'
+$EIGO1 = 'C:\ic-share\Administrator/MyDocuments'
+$user = 'administrator'
+
 
 ## 1.マイドキュメントの所有者をファイルサーバのローカルアドミンに変更
-icacls 1.txt /setowner BUILTIN\Administrators
+icacls $KATAKANA1 /setowner FILESERVER\Administrator /T
 
+##所有者確認コマンド
+takeown /F $KATAKANA1 /R
 
 ## 2.MyDocumentsを削除
-Remove-Item <変数>
+
+Remove-Item $EIGO1 -Force -Recurse
 
 ## 3.マイドキュメントをMyDocumentsにRename
-Rename-Item <変数1> <変数2>
-
+Rename-Item $KATAKANA1 $EIGO1
 
 ## 4.空フォルダ「マイドキュメント」を作成
-New-Item <変数1> type directory
+
+New-Item $KATAKANA1 -Type directory
+
 
 ## 5.MyDocumentsのショートカット作成
+
     $create_shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut
-    $TargetPath = "<旧ドメインの変数>"
-    $Shortcut = "<新ドメインの変数>.lnk"
+    $TargetPath = "$KATAKANA1"
+    $Shortcut = "$EIGO1.lnk"
     $s = $create_shortcut.invoke("$Shortcut") # Must end in .lnk
-    $s.TargetPath = "<新ドメインの変数>"
+    $s.TargetPath = "$EIGO1"
     $s.IconLocation = "imageres.dll,3" # This is a reference to a folder icon
     $s.Description = "My Folder"
     $s.Save()
+    
+    Move-Item $Shortcut $TargetPath
 
 ## 6.新ドメインの権限をフォルダ内の全ファイルにつける
-cmd /C "icacls <ユーザ変数> /grant <新ドメインの変数>\<ユーザの変数>`:F"
 
-
+cmd /C "icacls $EIGO1\* /grant FILESERVER\Administrator`:F /T"
 
