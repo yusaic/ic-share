@@ -8,13 +8,15 @@ ic share folder
 
 ## Usage
 
-#ファイル登録
-'ghq' git add ファイル名
-#まとめて登録
-'ghq' git add .
+#ファイル登録  
+'git add ファイル名'  
+#まとめて登録  
+'git add .'  
 
 #コメントをつける
-'ghq' git commit -m "Gitにファイル登録" 
-#ローカルリポジトリで登録したファイルをリモートリポジトリに送信
-'ghq' git push origin master
+'git commit -m "Gitにファイル登録" '  
+#ローカルリポジトリで登録したファイルをリモートリポジトリに送信  
+'git push origin master'
+
+
 
