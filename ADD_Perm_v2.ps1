@@ -1,4 +1,4 @@
-## ドキュメント →2003
+﻿## ドキュメント →2003
 ## Documents    →2016
 
 
@@ -12,11 +12,11 @@ Write-Output "Processing $user ...."
 ## 変数 ##
 ###################################################################################################################
 
-# $user    = <LISTファイルから取得したユーザ名>       ## 各ユーザ名(Listファイルから取得)
-$KATAKANA1 = "<file serverのunc>\$user\ドキュメント"  ## 旧2003 Serverのパス
-$EIGO1     = "<file serverのunc>\$user\Documents"     ## 新2016 Serverのパス
-$owner     = 'FILESERVER\Administrator'               ## 所有者のパス（ドメイン＋ファイルサーバのローカルアドミン）
-$domain    = 'FILESERVER'                             ## 新2016 Serverのドメイン名
+# $user    = <LISTファイルから取得したユーザ名>                ## 各ユーザ名(Listファイルから取得)
+$KATAKANA1 = "<file serverのunc>\ic-share\$user\ドキュメント"  ## 旧2003 Serverのパス
+$EIGO1     = "<file serverのunc>\ic-share\$user\Documents"     ## 新2016 Serverのパス
+$owner     = 'FILESERVER\Administrator'                        ## 所有者のパス（ドメイン＋ファイルサーバのローカルアドミン）
+$domain    = 'OAnoSHINKINCARD'                                 ## 新2016 Serverのドメイン名
 
 ###################################################################################################################
 
@@ -53,6 +53,6 @@ $s.Save()
 Move-Item $Shortcut $TargetPath
 
 ## 6.新ドメイン各ユーザの権限をフォルダ内の全ファイルにつける
-cmd /C "icacls $EIGO1\* /grant $domain\$user`:F /T"
+cmd /C "icacls $dir\$user\* /grant $domain\$user`:F /T"
 
 }
