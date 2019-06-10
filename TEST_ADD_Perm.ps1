@@ -26,33 +26,39 @@ $domain    = 'FILESERVER'                             ## 新2016 Serverのドメ
 ##############################################################################################
 
 ## 1.マイドキュメントの所有者をファイルサーバのローカルアドミンに変更
-icacls $KATAKANA1 /setowner $owner /T
+$x1 = "icacls $KATAKANA1 /setowner $owner /T"
+echo "$x1"
 
 ##所有者確認コマンド
-takeown /F $KATAKANA1 /R
+$x2 = "takeown /F $KATAKANA1 /R"
+echo "$x2"
 
 ## 2.MyDocumentsを削除
-Remove-Item $EIGO1 -Force -Recurse
+$x3 = "Remove-Item $EIGO1 -Force -Recurse"
+echo "$x3"
 
 ## 3.マイドキュメントをMyDocumentsにRename
-Rename-Item $KATAKANA1 $EIGO1
+$x4 = "Rename-Item $KATAKANA1 $EIGO1"
+echo "$x4"
 
 ## 4.空フォルダ「マイドキュメント」を作成
-New-Item $KATAKANA1 -Type directory
+$x5 = "New-Item $KATAKANA1 -Type directory"
+echo "$x5"
 
 ## 5.MyDocumentsのショートカット作成
-$create_shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut
-$TargetPath = "$KATAKANA1"
-$Shortcut = "$EIGO1.lnk"
-$s = $create_shortcut.invoke("$Shortcut") # Must end in .lnk
-$s.TargetPath = "$EIGO1"
-$s.IconLocation = "imageres.dll,3" # This is a reference to a folder icon
-$s.Description = "My Folder"
-$s.Save()
+
+#$create_shortcut = (New-Object -ComObject WScript.Shell).CreateShortcut
+#$TargetPath = "$KATAKANA1"
+#$Shortcut = "$EIGO1.lnk"
+#$s = $create_shortcut.invoke("$Shortcut") # Must end in .lnk
+#$s.TargetPath = "$EIGO1"
+#$s.IconLocation = "imageres.dll,3" # This is a reference to a folder icon
+#$s.Description = "My Folder"
+#$s.Save()
 ## ショートカットファイルをMyDocumentsに移動 
-Move-Item $Shortcut $TargetPath
+#Move-Item $Shortcut $TargetPath
 
 ## 6.新ドメイン各ユーザの権限をフォルダ内の全ファイルにつける
-cmd /C "icacls $EIGO1\* /grant $domain\$user`:F /T"
-
+$y ="cmd /C `"icacls $EIGO1\* /grant $domain\$user`:F /T`""
+echo "$y"
 }
