@@ -12,11 +12,11 @@ Write-Output "Processing $user ...."
 ## 変数 ##
 ###################################################################################################################
 
-# $user    = <LISTファイルから取得したユーザ名>                ## 各ユーザ名(Listファイルから取得)
-$KATAKANA1 = "<file serverのunc>\ic-share\$user\ドキュメント"  ## 旧2003 Serverのパス
-$EIGO1     = "<file serverのunc>\ic-share\$user\Documents"     ## 新2016 Serverのパス
-$owner     = 'FILESERVER\Administrator'                        ## 所有者のパス（ドメイン＋ファイルサーバのローカルアドミン）
-$domain    = 'OAnoSHINKINCARD'                                 ## 新2016 Serverのドメイン名
+# $user    = <LISTファイルから取得したユーザ名>           ## 各ユーザ名(Listファイルから取得)
+$KATAKANA1 = "<file serverのunc>\$user\ドキュメント"      ## 旧2003 Serverのパス
+$EIGO1     = "<file serverのunc>\$user\Documents"         ## 新2016 Serverのパス
+$owner     = 'FILESERVER\Administrator'                   ## 所有者のパス（ドメイン＋ファイルサーバのローカルアドミン）
+$domain    = 'OAnoSHINKINCARDnodomain'                    ## 新2016 Serverのドメイン名
 
 ###################################################################################################################
 
