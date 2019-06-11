@@ -1,21 +1,29 @@
-"# ic-share"  initgit add README.mdgit commit -m "first commit"git remote add origin https://github.com/yusaic/ic-share.gitgit push -u origin master
+# 権限付与スクリプト
 
+## 前提条件
+・所有者変更(FSのローカルAdminisrator)
+・Win2016用共有フォルダ削除(あれば)
+・Win2012用共有フォルダ名前変更(Win2012用→Win2016用)
+・Win2012用共有フォルダ新規作成(空)
+・Win2016用共有フォルダへのショートカット作成(Win2012用共有フォルダ内に作成)
+・Win2016用共有フォルダ配下の全フォルダおよびファイルの権限付与(ユーザ)
 
-## Description
-ic share folder
+-１．例　<file serverのunc>にアクセスします
+\\172.31.242.221\ic-share
 
+-２．同じディレクトリに2003用の「ドキュメント」フォルダと
+2016用の「Documents」フォルダと
+シェルファイル「1_mkdirv2.ps1」と「ADD_Perm_v2.ps1」と
+リストファイル[list.txt]を準備します。
 
-## Usage
+-３．シェルファイル「1_mkdirv2.ps1」の[$dir]変数に現在のカレントディレクトリを指定する
 
-#ファイル登録  
-`git add ファイル名`  
-#まとめて登録  
-`git add .`  
+-４．シェルファイル「ADD_Perm_v2.ps1」の変数で囲われている箇所の値を調節する
 
-#コメントをつける  
-`git commit -m "Gitにファイル登録" `  
-#ローカルリポジトリで登録したファイルをリモートリポジトリに送信  
-`git push origin master`  
+-５．Powershellを開き、シェルのあるディレクトリに移動します。
 
+-６．シェルファイル「1_mkdirv2.ps1」を当てる
+※必ずこちらから当ててください
+※当てる前にカレントディレクトリが正しいかご確認ください。
 
-
+-７．最後にシェルファイル「ADD_Perm_v2.ps1」を当てる
