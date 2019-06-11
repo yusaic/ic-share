@@ -53,6 +53,5 @@ $s.Save()
 Move-Item $Shortcut $TargetPath
 
 ## 6.新ドメイン各ユーザの権限をフォルダ内の全ファイルにつける
-cmd /C "icacls $dir\$user\* /grant $domain\$user`:F /T"
-
+icacls $dir\$user /grant $domain\$user`:F /T
 }
